@@ -68,11 +68,14 @@ module.exports = (env) => {
 		},
 		plugins: [
 			new webpack.ProgressPlugin(),
+			new webpack.ProvidePlugin({
+				// cx: "classnames",
+			}),
 			new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 			new ForkTsCheckerWebpackPlugin(),
 			new HtmlWebpackPlugin({
 				title: `TITLE ${isDev ? "development" : ""}`,
-				template: path.resolve(__dirname, "src/pages/index.html"),
+				template: path.resolve(__dirname, "src/index.html"),
 				alwaysWriteToDisk: true,
 			}),
 			isProd ? new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/\.(js|css)$/]) : doNothing,

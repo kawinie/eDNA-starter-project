@@ -9,11 +9,16 @@ module.exports = {
 		content: ["./src/**/*.tsx", "./src/**/*.html"],
 	},
 	theme: {
-		extend: {},
-		colors: {
-			gray: colors.blueGray,
+		extend: {
+			colors: {
+				gray: colors.blueGray,
+				trueGray: colors.trueGray,
+			},
 		},
 	},
 	variants: {},
 	plugins: [],
+	screens: {
+		"2xl": false,
+	},
 };
