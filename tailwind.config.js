@@ -14,11 +14,22 @@ module.exports = {
 				gray: colors.blueGray,
 				trueGray: colors.trueGray,
 			},
+			textColor: {
+				primary: colors.blueGray["700"],
+				secondary: colors.blueGray["200"],
+			},
+		},
+		screens: {
+			md: "768px",
+			// => @media (min-width: 768px) { ... }
+
+			lg: "1024px",
+			// => @media (min-width: 1024px) { ... }
+
+			xl: "1280px",
+			// => @media (min-width: 1280px) { ... }
 		},
 	},
 	variants: {},
-	plugins: [],
-	screens: {
-		"2xl": false,
-	},
+	plugins: [require("tailwindcss-debug-screens")],
 };

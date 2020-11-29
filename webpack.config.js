@@ -12,17 +12,20 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const doNothing = {
 	apply: function () {},
 };
+
 module.exports = (env) => {
 	process.env.NODE_ENV = env.NODE_ENV;
 	const isProd = env.NODE_ENV == "production";
-	const isDev = env.NODE_ENV == "developement";
-	return {
+	const isDev = env.NODE_ENV == "development";
+	const config = {
+		mode: process.env.NODE_ENV,
 		context: __dirname,
 		entry: "./src/index",
 		devServer: {
 			contentBase: path.resolve(__dirname, "dist"),
-			compress: true,
+			// compress: true,
 			historyApiFallback: true,
+			hot: true,
 		},
 		module: {
 			rules: [
@@ -68,9 +71,6 @@ module.exports = (env) => {
 		},
 		plugins: [
 			new webpack.ProgressPlugin(),
-			new webpack.ProvidePlugin({
-				// cx: "classnames",
-			}),
 			new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 			new ForkTsCheckerWebpackPlugin(),
 			new HtmlWebpackPlugin({
@@ -96,6 +96,8 @@ module.exports = (env) => {
 				// "react-dom/test-utils": "preact/test-utils",
 				// Must be below test-utils
 				"react-dom": "preact/compat",
+				src: path.resolve(__dirname, "src"),
+				components: path.resolve(__dirname, "src", "components"),
 			},
 		},
 		output: {
@@ -104,4 +106,7 @@ module.exports = (env) => {
 			publicPath: "/",
 		},
 	};
+
+	// return smp.wrap(config);
+	return config;
 };

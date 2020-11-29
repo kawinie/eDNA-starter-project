@@ -9,17 +9,13 @@
 		"jsx": "react",
 		"jsxFactory": "h",
 		"jsxFragmentFactory": "Fragment",
-		"moduleResolution": "node"
+		"moduleResolution": "node",
 
-		// "baseUrl": ".",
-		// "paths": {
-		// 	"app": ["./src/App"],
-		// 	"app/*": ["./src/App/*"],
-		// 	"components": ["./src/Components"],
-		// 	"components/*": ["./src/Components/*"],
-		// 	"util": ["./src/Util"],
-		// 	"util/*": ["./src/Util/*"]
-		// }
+		"baseUrl": ".",
+		"paths": {
+			"src/*": ["./src/*"],
+			"components/*": ["./src/components/*"]
+		}
 	},
 	"exclude": ["node_modules", "node_modules.nosync", "dist", "public", "build", "out"]
 }
