@@ -1,0 +1,7 @@
+.valveStatus {
+	grid-template-rows: min-content;
+	grid-auto-rows: auto;
+	padding: 1rem;
+	gap: 1rem;
+	@apply grid rounded-md;
+}

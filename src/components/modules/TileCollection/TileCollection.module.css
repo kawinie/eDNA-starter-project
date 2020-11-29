@@ -1,0 +1,15 @@
+:root {
+	--grid-size: 12rem;
+}
+
+.tileCollection {
+	grid-template-columns: var(--grid-size);
+	grid-auto-rows: var(--grid-size);
+	@apply grid gap-4 text-gray-700 border-gray-200;
+}
+
+@screen xl {
+	.tileCollection {
+		grid-template-columns: var(--grid-size) var(--grid-size);
+	}
+}

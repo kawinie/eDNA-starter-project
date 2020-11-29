@@ -1,11 +1,12 @@
 import "./styles/global.css";
-
 import { h, Fragment, render } from "preact";
-import { Button } from "./components/atoms/Button/Button";
+import { Monitoring } from "./pages/Monitoring";
+
+import cx from "classnames";
 
 const Application = (
 	<Fragment>
-		<Button text={"Hey! Everything is working!"}></Button>
+		<Monitoring />
 	</Fragment>
 );
 
