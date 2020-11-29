@@ -13,6 +13,7 @@ module.exports = {
 			colors: {
 				gray: colors.blueGray,
 				trueGray: colors.trueGray,
+				teal: colors.teal,
 			},
 			textColor: {
 				primary: colors.blueGray["700"],

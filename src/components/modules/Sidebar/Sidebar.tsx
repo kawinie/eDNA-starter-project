@@ -29,7 +29,7 @@ const SVGNavLink: FunctionalComponent<SVGButtonProps> = ({
 				<a
 					ref={ref}
 					{...props}
-					className={cx("flex px-12 text-sm tems-center hover:bg-gray-100", {
+					className={cx("flex px-8 lg:px-12 text-sm items-center hover:bg-gray-100", {
 						"bg-gray-100": location.pathname === to,
 					})}>
 					{props.children}
@@ -37,14 +37,14 @@ const SVGNavLink: FunctionalComponent<SVGButtonProps> = ({
 			))}>
 			<div className="flex items-center">
 				<svg
-					className={`fill-current text-primary mr-4 ${svgClassName}`}
+					className={`fill-current text-primary lg:mr-4 ${svgClassName}`}
 					width={width}
 					height={height}
 					viewBox={`0 0 ${width} ${height}`}
 					xmlns="http://www.w3.org/2000/svg">
 					{children}
 				</svg>
-				<div>{text}</div>
+				<div className="hidden lg:block">{text}</div>
 			</div>
 		</NavLink>
 	);
