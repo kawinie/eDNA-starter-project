@@ -8,7 +8,7 @@ export const Card: FunctionalComponent<{ title?: string }> = ({
 }) => {
 	return (
 		<div className={cx(styles.card)}>
-			<div className="text-xl font-bold text-gray-700 col-span-full">{title}</div>
+			<div className="font-bold text-gray-700 col-span-full">{title}</div>
 			<div className="content">{children}</div>
 		</div>
 	);

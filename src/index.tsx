@@ -1,13 +1,16 @@
 import "./styles/global.css";
-import { h, Fragment, render } from "preact";
+import { h, render } from "preact";
 import { Monitoring } from "./pages/Monitoring";
 
-import cx from "classnames";
+import { HashRouter as Router, Route, Link, NavLink, Redirect, Switch } from "react-router-dom";
 
 const Application = (
-	<Fragment>
-		<Monitoring />
-	</Fragment>
+	<Router>
+		<Switch>
+			<Route path="/monitoring" component={Monitoring} />
+			<Route path="/" render={() => <Redirect to="/monitoring" />} />
+		</Switch>
+	</Router>
 );
 
 render(Application, document.getElementById("root"));

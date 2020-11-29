@@ -10,11 +10,12 @@ export const Monitoring: FunctionalComponent = () => {
 	return (
 		<div className="flex">
 			<Sidebar />
-			<div className="flex flex-col w-full bg-trueGray-100">
-				<nav className="z-40 flex-shrink-0 w-full h-20 bg-white"></nav>
+			<div data-for="left pane" className="flex flex-col w-full bg-trueGray-100">
+				<div data-for="toolbar" className="z-40 flex-shrink-0 w-full h-20 bg-white"></div>
 				<Breadcrumb />
 
-				<div // Content Grid
+				<div
+					data-for="content grid"
 					className="grid self-center w-full max-w-screen-xl gap-4 px-4"
 					style="grid-template-columns: 1fr min-content;">
 					<div>
