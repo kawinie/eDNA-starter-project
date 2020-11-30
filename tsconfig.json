@@ -10,7 +10,6 @@
 		"jsxFactory": "h",
 		"jsxFragmentFactory": "Fragment",
 		"moduleResolution": "node",
-
 		"baseUrl": ".",
 		"paths": {
 			"src/*": ["./src/*"],

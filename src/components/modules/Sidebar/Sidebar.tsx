@@ -22,19 +22,12 @@ const SVGNavLink: FunctionalComponent<SVGButtonProps> = ({
 	children,
 }) => {
 	const location = useLocation();
+
+	const navlinkClassName = cx("flex px-8 lg:px-12 text-sm items-center hover:bg-gray-100", {
+		"bg-gray-100": location.pathname === to,
+	});
 	return (
-		<NavLink
-			to={to}
-			component={forwardRef((props, ref) => (
-				<a
-					ref={ref}
-					{...props}
-					className={cx("flex px-8 lg:px-12 text-sm items-center hover:bg-gray-100", {
-						"bg-gray-100": location.pathname === to,
-					})}>
-					{props.children}
-				</a>
-			))}>
+		<NavLink className={navlinkClassName} to={to}>
 			<div className="flex items-center">
 				<svg
 					className={`fill-current text-primary lg:mr-4 ${svgClassName}`}
@@ -54,7 +47,7 @@ export const Sidebar: FunctionalComponent<{}> = () => {
 	return (
 		<div
 			className="z-50 grid flex-shrink-0 min-h-screen shadow-2xl"
-			style="grid-template-rows: 80px; grid-auto-rows: 100px;">
+			style="grid-template-rows: 64px 64px; grid-auto-rows: 100px;">
 			<div className="grid text-2xl place-content-center">EDNA</div>
 			<div />
 			<SVGNavLink text="Documentation" to="/documentation">

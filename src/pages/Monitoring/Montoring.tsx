@@ -19,7 +19,7 @@ export const Monitoring: FunctionalComponent = () => {
 		<div className="flex">
 			<Sidebar />
 			<LeftPane className="flex flex-col w-full bg-trueGray-100">
-				<ToolBar className="z-40 flex-shrink-0 w-full h-20 bg-white"></ToolBar>
+				<ToolBar className="z-40 flex-shrink-0 w-full h-16 bg-white"></ToolBar>
 				<Breadcrumb />
 
 				<ContentGrid
