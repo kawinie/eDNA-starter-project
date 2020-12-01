@@ -20,7 +20,7 @@ module.exports = (env) => {
 	const config = {
 		mode: process.env.NODE_ENV,
 		context: __dirname,
-		entry: "./src/index",
+		entry: "./index",
 		devServer: {
 			contentBase: path.resolve(__dirname, "dist"),
 			// compress: true,
@@ -75,7 +75,7 @@ module.exports = (env) => {
 			new ForkTsCheckerWebpackPlugin(),
 			new HtmlWebpackPlugin({
 				title: `TITLE ${isDev ? "development" : ""}`,
-				template: path.resolve(__dirname, "src/index.html"),
+				template: path.resolve(__dirname, "./index.html"),
 				alwaysWriteToDisk: true,
 			}),
 			isProd ? new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/\.(js|css)$/]) : doNothing,
@@ -96,8 +96,9 @@ module.exports = (env) => {
 				// "react-dom/test-utils": "preact/test-utils",
 				// Must be below test-utils
 				"react-dom": "preact/compat",
-				src: path.resolve(__dirname, "src"),
-				components: path.resolve(__dirname, "src", "components"),
+				components: path.resolve(__dirname, "components"),
+				pages: path.resolve(__dirname, "pages"),
+				styles: path.resolve(__dirname, "styles"),
 			},
 		},
 		output: {

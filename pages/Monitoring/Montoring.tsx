@@ -4,7 +4,7 @@ import { Sidebar } from "components/modules/Sidebar";
 import { TileCollection } from "components/modules/TileCollection";
 import { ValveStatus } from "components/modules/ValveStatus";
 import { StateTable } from "components/modules/StateTable";
-import { Breadcrumb } from "src/components/modules/Breadcrumb";
+import { Breadcrumb } from "components/modules/Breadcrumb";
 
 const Div: FunctionalComponent<JSX.HTMLAttributes<HTMLDivElement>> = (props) => (
 	<div {...props}>{props.children}</div>
@@ -16,10 +16,10 @@ const LeftPane = Div,
 
 export const Monitoring: FunctionalComponent = () => {
 	return (
-		<div className="flex">
+		<div className="flex h-full overflow-hidden">
 			<Sidebar />
-			<LeftPane className="flex flex-col w-full bg-trueGray-100">
-				<ToolBar className="z-40 flex-shrink-0 w-full h-16 bg-white"></ToolBar>
+			<LeftPane className="flex flex-col w-full h-screen overflow-y-scroll bg-trueGray-100">
+				<ToolBar className="sticky top-0 z-40 flex-shrink-0 w-full h-8 bg-white"></ToolBar>
 				<Breadcrumb />
 
 				<ContentGrid

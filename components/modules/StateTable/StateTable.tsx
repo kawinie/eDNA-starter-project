@@ -1,5 +1,8 @@
 import { h, FunctionalComponent } from "preact";
-import { Card } from "src/components/modules/Card";
+import { Card } from "components/modules/Card";
+import { Badge } from "components/units/Badge";
+
+import cx from "classnames";
 
 const HeaderCell: FunctionalComponent<{ className?: string }> = ({ className, children }) => {
 	return (
@@ -32,18 +35,14 @@ const StateTableRow: FunctionalComponent<{
 	name: string;
 	timeElapsed: number;
 }> = ({ status, name, timeElapsed }) => {
+	const badgeStyle = cx("px-2 text-xs font-semibold leading-5 bg-gray-100 rounded-full", {
+		"text-primary": status.toLowerCase() === "active",
+	});
+
 	return (
 		<tr className="rounded-md shadow">
 			<TableCell className="rounded-l-md">
-				{status.toLowerCase() == "active" ? (
-					<span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-700 bg-green-100 rounded-full">
-						Active
-					</span>
-				) : (
-					<span className="inline-flex px-2 text-xs font-semibold leading-5 bg-gray-100 rounded-full text-primary">
-						Inactive
-					</span>
-				)}
+				<Badge className={badgeStyle} text={status} />
 			</TableCell>
 			<TableCell>{name}</TableCell>
 			<TableCell className="text-right rounded-r-md">{timeElapsed}</TableCell>
@@ -58,6 +57,7 @@ export const StateTable: FunctionalComponent<{}> = () => {
 		status: id === 2 ? "active" : "inactive",
 		timeElapsed: id * 5,
 	}));
+
 	return (
 		<Card title="State Information">
 			<table

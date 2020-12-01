@@ -10,6 +10,5 @@ Thumbs.db
 .cache/
 coverage/
 node_modules/
-dist/*
-!dist/index.html
+dist/
 *.log

@@ -1,6 +1,6 @@
 import { h, FunctionalComponent } from "preact";
 import { useState } from "preact/hooks";
-import { Card } from "../Card";
+import { Card } from "components/modules/Card";
 
 import styles from "./ValveStatus.module.css";
 

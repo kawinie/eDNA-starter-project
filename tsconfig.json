@@ -12,8 +12,9 @@
 		"moduleResolution": "node",
 		"baseUrl": ".",
 		"paths": {
-			"src/*": ["./src/*"],
-			"components/*": ["./src/components/*"]
+			"components/*": ["./components/*"],
+			"pages/*": ["./pages/*"],
+			"styles/*": ["./styles/*"]
 		}
 	},
 	"exclude": ["node_modules", "node_modules.nosync", "dist", "public", "build", "out"]
