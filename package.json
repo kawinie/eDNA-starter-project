@@ -5,10 +5,10 @@
 	"private": true,
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "webpack --env NODE_ENV=production",
-		"watch": "webpack --watch --mode=development --env NODE_ENV=development",
-		"dev": "webpack --mode=development --env NODE_ENV=development",
-		"start": "webpack serve --open=firefox --env NODE_ENV=development"
+		"build": "webpack --mode=production",
+		"watch": "webpack --mode=development --watch NODE_ENV=development",
+		"dev": "webpack --mode=development NODE_ENV=development",
+		"start": "NODE_ENV=development webpack serve --open=firefox --mode=development"
 	},
 	"keywords": [],
 	"author": "",

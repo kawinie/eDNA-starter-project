@@ -1,20 +1,25 @@
-import { h, FunctionalComponent } from "preact";
+import { h, FunctionalComponent, JSX } from "preact";
 import { Card } from "components/modules/Card";
 import { Badge } from "components/units/Badge";
 
 import cx from "classnames";
 
-const HeaderCell: FunctionalComponent<{ className?: string }> = ({ className, children }) => {
-	return (
-		<th
-			scope="col"
-			className={`px-6 py-3 text-sm font-bold tracking-wider text-left bg-gray-100 text-primary ${className}`}>
-			{children}
-		</th>
-	);
-};
+interface StateType {
+	status: string;
+	name: string;
+	timeElapsed: number;
+}
 
-const StateTableHeader: FunctionalComponent<{}> = () => {
+// const staticData: StateType[] = [{ name: "Idle", status: "Inactive", timeElapsed:  0}];
+const HeaderCell: FunctionalComponent<{ className?: string }> = ({ className, children }) => (
+	<th
+		scope="col"
+		className={`px-6 py-3 text-sm font-bold tracking-wider text-left bg-gray-100 text-primary ${className}`}>
+		{children}
+	</th>
+);
+
+const StateTableHeader: FunctionalComponent = () => {
 	return (
 		<thead>
 			<tr className="rounded-md shadow">
@@ -26,17 +31,15 @@ const StateTableHeader: FunctionalComponent<{}> = () => {
 	);
 };
 
-const TableCell: FunctionalComponent<{ className?: string }> = ({ className, children }) => {
-	return <td className={`px-6 py-4 text-sm bg-white text-primary ${className}`}>{children}</td>;
-};
+const TableCell: FunctionalComponent<{ className?: string }> = ({ className, children }) => (
+	<td className={`px-6 py-4 text-sm bg-white text-primary ${className}`}>{children}</td>
+);
 
-const StateTableRow: FunctionalComponent<{
-	status: string;
-	name: string;
-	timeElapsed: number;
-}> = ({ status, name, timeElapsed }) => {
-	const badgeStyle = cx("px-2 text-xs font-semibold leading-5 bg-gray-100 rounded-full", {
-		"text-primary": status.toLowerCase() === "active",
+const StateTableRow: FunctionalComponent<StateType> = ({ status, name, timeElapsed }) => {
+	const cs = status.toLocaleLowerCase() === "inactive";
+	const badgeStyle = cx("px-2 text-xs font-semibold leading-5 rounded-full", {
+		"bg-gray-100 text-primary": cs,
+		"bg-green-100 text-green-700": !cs,
 	});
 
 	return (
@@ -45,17 +48,17 @@ const StateTableRow: FunctionalComponent<{
 				<Badge className={badgeStyle} text={status} />
 			</TableCell>
 			<TableCell>{name}</TableCell>
-			<TableCell className="text-right rounded-r-md">{timeElapsed}</TableCell>
+			<TableCell className="text-right rounded-r-md">{`${timeElapsed} seconds ago`}</TableCell>
 		</tr>
 	);
 };
 
-export const StateTable: FunctionalComponent<{}> = () => {
+export const StateTable: FunctionalComponent = () => {
 	const stateNames = ["Idle", "Flushing", "Sampling", "Decontamination", "Stop"];
-	const states = Array.from({ length: 5 }, (_, id) => ({
+	const states: StateType[] = Array.from({ length: 5 }, (_, id) => ({
 		name: stateNames[id],
-		status: id === 2 ? "active" : "inactive",
-		timeElapsed: id * 5,
+		status: id === 2 ? "Active" : "Inactive",
+		timeElapsed: (id - 2) * 5,
 	}));
 
 	return (

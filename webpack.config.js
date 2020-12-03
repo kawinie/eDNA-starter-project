@@ -1,24 +1,23 @@
-const webpack = require("webpack"); //to access built-in plugins
 const path = require("path");
+const webpack = require("webpack"); //to access built-in plugins
 
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 const HtmlWebpackHarddiskPlugin = require("html-webpack-harddisk-plugin");
 const BrotliPlugin = require("brotli-webpack-plugin");
-
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+
+const PACKAGE = require(path.resolve(__dirname, "package.json"));
 
 const doNothing = {
 	apply: function () {},
 };
 
-module.exports = (env) => {
-	process.env.NODE_ENV = env.NODE_ENV;
-	const isProd = env.NODE_ENV == "production";
-	const isDev = env.NODE_ENV == "development";
+module.exports = (env, argv) => {
+	process.env.NODE_ENV = argv.mode;
+	const isProduction = process.env.NODE_ENV == "production";
 	const config = {
-		mode: process.env.NODE_ENV,
 		context: __dirname,
 		entry: "./index",
 		devServer: {
@@ -70,6 +69,9 @@ module.exports = (env) => {
 			],
 		},
 		plugins: [
+			new webpack.DefinePlugin({
+				__APPVERSION__: JSON.stringify(PACKAGE.version),
+			}),
 			new webpack.ProgressPlugin(),
 			new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 			new ForkTsCheckerWebpackPlugin(),
@@ -78,9 +80,11 @@ module.exports = (env) => {
 				template: path.resolve(__dirname, "./index.html"),
 				alwaysWriteToDisk: true,
 			}),
-			isProd ? new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/\.(js|css)$/]) : doNothing,
-			isProd ? new HtmlWebpackHarddiskPlugin() : doNothing,
-			isProd
+			isProduction
+				? new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/\.(js|css)$/])
+				: doNothing,
+			isProduction ? new HtmlWebpackHarddiskPlugin() : doNothing,
+			isProduction
 				? new BrotliPlugin({
 						asset: "[path].br[query]",
 						test: /\.(html)$/,

@@ -19,7 +19,9 @@ export const Monitoring: FunctionalComponent = () => {
 		<div className="flex h-full overflow-hidden">
 			<Sidebar />
 			<LeftPane className="flex flex-col w-full h-screen overflow-y-scroll bg-trueGray-100">
-				<ToolBar className="sticky top-0 z-40 flex-shrink-0 w-full h-8 bg-white"></ToolBar>
+				<ToolBar className="sticky top-0 z-40 grid items-center flex-shrink-0 w-full h-8 bg-white">
+					<div className="px-4 text-sm justify-self-end text-primary">{`V${__APPVERSION__}`}</div>
+				</ToolBar>
 				<Breadcrumb />
 
 				<ContentGrid
