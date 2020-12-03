@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
 	const isProduction = process.env.NODE_ENV == "production";
 	const config = {
 		context: __dirname,
-		entry: "./index",
+		entry: "./app/index",
 		devServer: {
 			contentBase: path.resolve(__dirname, "dist"),
 			// compress: true,
@@ -76,8 +76,8 @@ module.exports = (env, argv) => {
 			new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 			new ForkTsCheckerWebpackPlugin(),
 			new HtmlWebpackPlugin({
-				title: `TITLE ${isDev ? "development" : ""}`,
-				template: path.resolve(__dirname, "./index.html"),
+				title: `TITLE ${isProduction ? "" : "development"}`,
+				template: path.resolve(__dirname, "./app/index.html"),
 				alwaysWriteToDisk: true,
 			}),
 			isProduction
