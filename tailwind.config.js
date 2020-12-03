@@ -6,7 +6,7 @@ module.exports = {
 		// purgeLayersByDefault: true,
 	},
 	purge: {
-		content: ["./src/**/*.tsx", "./src/**/*.html"],
+		content: ["./**/*.tsx", "./**/*.html"],
 	},
 	theme: {
 		extend: {

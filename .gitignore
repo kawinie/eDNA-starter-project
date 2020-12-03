@@ -10,5 +10,5 @@ Thumbs.db
 .cache/
 coverage/
 node_modules/
-dist/
+_dist/
 *.log
