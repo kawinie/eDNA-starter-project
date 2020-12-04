@@ -16,24 +16,28 @@ const LeftPane = Div,
 
 export const Monitoring: FunctionalComponent = () => {
 	return (
-		<LeftPane className="flex flex-col w-full h-screen overflow-y-scroll bg-trueGray-100">
-			<ToolBar className="sticky top-0 z-40 grid items-center flex-shrink-0 w-full h-8 bg-white">
+		<LeftPane
+			className="flex flex-col w-full h-screen overflow-y-scroll bg-background"
+			style="border-top-left-radius: 3rem; border-bottom-left-radius: 3rem">
+			<ToolBar className="sticky top-0 z-40 grid items-center flex-shrink-0 w-full h-8">
 				<div className="px-4 text-sm justify-self-end text-primary">{`V${__APPVERSION__}`}</div>
 			</ToolBar>
 			<Breadcrumb />
 
 			<ContentGrid
-				className="grid self-center w-full max-w-screen-xl gap-4 px-4"
+				className="grid self-center w-full max-w-screen-xl gap-4"
 				style="grid-template-columns: 1fr min-content;">
 				<main>
 					<ValveStatus />
 					<StateTable />
 				</main>
 				<TileCollection>
-					<Tile title="PRESSURE" value="10 PSI" />
-					<Tile title="FLOW" value="30 MM/S" />
-					<Tile title="TEMPERATURE" value="3C" />
-					<Tile title="ATM" value="1 BAR" />
+					<Tile title="Presssure" value="10" unit="psi" />
+					<Tile title="Flow" value="30" unit="mm/s" />
+					<Tile title="Temperature" value="3" unit="°C" />
+					<Tile title="Barometeric" value="1" unit="bar" />
+					<Tile title="Volume" />
+					<Tile title="Depth" />
 				</TileCollection>
 			</ContentGrid>
 		</LeftPane>

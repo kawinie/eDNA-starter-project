@@ -16,8 +16,17 @@ module.exports = {
 				teal: colors.teal,
 			},
 			textColor: {
-				primary: colors.blueGray["700"],
-				secondary: colors.blueGray["200"],
+				primary: colors.trueGray["900"],
+				secondary: colors.trueGray["500"],
+			},
+			borderColor: {
+				DEFAULT: colors.trueGray["200"],
+			},
+			backgroundColor: {
+				background: colors.trueGray["100"],
+			},
+			letterSpacing: {
+				logo: "1rem",
 			},
 		},
 		screens: {

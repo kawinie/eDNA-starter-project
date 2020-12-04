@@ -1,14 +1,15 @@
 import { h, FunctionalComponent } from "preact";
-import styles from "./Card.module.css";
-import cx from "classnames";
 
-export const Card: FunctionalComponent<{ title?: string }> = ({
+export const Card: FunctionalComponent<{ title?: string; className?: string }> = ({
 	title = "UNTITILED",
+	className,
 	children,
 }) => {
 	return (
-		<div className={cx(styles.card)}>
-			<div className="font-bold text-gray-700 col-span-full">{title}</div>
+		<div
+			className={`grid gap-4 p-8 rounded-xl ${className}`}
+			style="grid-template-rows: min-content;">
+			<div className="text-xl font-bold text-primary col-span-full">{title}</div>
 			<div className="content">{children}</div>
 		</div>
 	);

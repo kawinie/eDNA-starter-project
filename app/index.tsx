@@ -7,7 +7,7 @@ import { Sidebar } from "components/modules/Sidebar";
 
 const Application = (
 	<Router>
-		<div className="flex h-full overflow-hidden">
+		<div className="flex h-full overflow-hidden bg-white">
 			<Sidebar />
 			<Switch>
 				<Route path="/monitoring" component={Monitoring} />

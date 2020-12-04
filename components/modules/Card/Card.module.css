@@ -1,5 +1,0 @@
-.card {
-	grid-template-rows: min-content;
-	grid-auto-rows: auto;
-	@apply grid rounded-md p-4 gap-4;
-}

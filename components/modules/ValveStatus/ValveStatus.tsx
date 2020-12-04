@@ -20,12 +20,13 @@ interface ValveType {
 
 export const ValveCollection: FunctionalComponent<{ valves: ValveType[] }> = ({ valves }) => {
 	const valveCx = (status: boolean) =>
-		cx("rounded-md p-1 flex items-center justify-center text-gray-100 shadow", {
-			"bg-gray-500": status,
-			"bg-gray-200": !status,
+		cx("px-4 py-2 flex items-center justify-center text-primary font-bold hover:bg-teal-100", {
+			"bg-white": status,
+			"": !status,
 		});
+
 	return (
-		<div className="grid h-24 grid-flow-row grid-cols-12 grid-rows-2 gap-2">
+		<div className="grid h-24 grid-flow-row grid-cols-12 grid-rows-2 overflow-hidden shadow rounded-xl">
 			{valves.map((v) => (
 				<div key={v.id} className={valveCx(v.status)}>
 					{v.id}
@@ -41,6 +42,27 @@ export const ValveStatus: FunctionalComponent<{}> = () => {
 	return (
 		<Card title="Valve Status">
 			<ValveCollection valves={top.concat(bottom.reverse())} />
+			<div className="grid grid-flow-col gap-8 auto-cols-max">
+				<div className="flex items-center mt-8">
+					<div className="w-4 h-4 mr-2 bg-teal-400 rounded-md"></div>
+					<div className="text-sm text-secondary">Current Valve</div>
+				</div>
+
+				<div className="flex items-center mt-8">
+					<div className="w-4 h-4 mr-2 bg-yellow-400 rounded-md"></div>
+					<div className="text-sm text-secondary">Next</div>
+				</div>
+
+				<div className="flex items-center mt-8">
+					<div className="w-4 h-4 mr-2 rounded-md bg-trueGray-900"></div>
+					<div className="text-sm text-secondary">Scheduled</div>
+				</div>
+
+				<div className="flex items-center mt-8">
+					<div className="w-4 h-4 mr-2 rounded-md bg-trueGray-300"></div>
+					<div className="text-sm text-secondary">Disabled</div>
+				</div>
+			</div>
 		</Card>
 	);
 };
