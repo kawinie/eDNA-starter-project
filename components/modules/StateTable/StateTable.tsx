@@ -12,9 +12,7 @@ interface StateType {
 
 // const staticData: StateType[] = [{ name: "Idle", status: "Inactive", timeElapsed:  0}];
 const HeaderCell: FunctionalComponent<{ className?: string }> = ({ className, children }) => (
-	<th
-		scope="col"
-		className={`px-2 py-4 font-normal text-sm text-left text-secondary ${className}`}>
+	<th scope="col" className={`py-4 font-normal text-sm text-left text-secondary ${className}`}>
 		{children}
 	</th>
 );

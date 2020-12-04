@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
 
 	return {
 		context: __dirname,
-		entry: "./app/index",
+		entry: "./app/app",
 		devServer: {
 			contentBase: path.resolve(__dirname, "_dist"),
 			// compress: true,
@@ -93,7 +93,7 @@ module.exports = (env, argv) => {
 			new MiniCssExtractPlugin(),
 			new HtmlWebpackPlugin({
 				title: `EDNA Dashboard ${isProduction ? "" : "(dev)"}`,
-				template: path.resolve(__dirname, "./app/index.ejs"),
+				template: path.resolve(__dirname, "./app/template.ejs"),
 				alwaysWriteToDisk: true,
 			}),
 			isProduction ? new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/\.js$/]) : doNothing,
