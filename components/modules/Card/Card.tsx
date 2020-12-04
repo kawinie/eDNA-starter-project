@@ -9,7 +9,9 @@ export const Card: FunctionalComponent<{ title?: string; className?: string }> =
 		<div
 			className={`grid gap-4 p-8 rounded-xl ${className}`}
 			style="grid-template-rows: min-content;">
-			<div className="text-xl font-bold text-primary col-span-full">{title}</div>
+			<div className="text-xl font-bold tracking-tight text-primary col-span-full">
+				{title}
+			</div>
 			<div className="content">{children}</div>
 		</div>
 	);

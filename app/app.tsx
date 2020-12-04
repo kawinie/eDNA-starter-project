@@ -7,12 +7,13 @@ import { Sidebar } from "components/modules/Sidebar";
 import { Breadcrumb } from "components/modules/Breadcrumb";
 // import { Toolbar } from "components/modules/Toolbar";
 
+import { Tasks } from "pages/Tasks";
 const Div: FunctionalComponent<JSX.HTMLAttributes<HTMLDivElement>> = (props) => (
 	<div {...props}>{props.children}</div>
 );
 
-const LeftPane = Div,
-	Toolbar = Div;
+const LeftPane = Div;
+const Toolbar = Div;
 
 const Application = (
 	<Router>
@@ -28,8 +29,12 @@ const Application = (
 				<Breadcrumb />
 
 				<Switch>
-					<Route path="/monitoring" component={Monitoring} />
-					<Route path="/" render={() => <Redirect to="/monitoring" />} />
+					<Route exact path="/" render={() => <Redirect to="/monitoring" />} />
+					<Route exact path="/404" render={() => <div>404 Error</div>} />
+
+					<Route path="/monitoring" render={() => <Monitoring />} />
+					<Route path="/tasks" render={() => <Tasks />} />
+					<Route path="*" render={() => <Redirect to="/404" />} />
 				</Switch>
 			</LeftPane>
 

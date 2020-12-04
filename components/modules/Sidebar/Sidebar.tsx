@@ -1,5 +1,4 @@
 import { h, FunctionalComponent } from "preact";
-import { forwardRef } from "preact/compat";
 import { NavLink, useLocation } from "react-router-dom";
 
 import cx from "classnames";

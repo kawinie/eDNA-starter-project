@@ -21,7 +21,7 @@ const Seperator = () => (
 export const Breadcrumb: FunctionalComponent<{}> = () => {
 	const location = useLocation();
 	const paths = location.pathname.split("/").slice(1);
-
+	console.log(location);
 	console.log(paths);
 	return (
 		<div className="grid items-center flex-shrink-0 w-full h-20 grid-flow-col gap-4 px-8 auto-cols-max">
@@ -43,7 +43,7 @@ export const Breadcrumb: FunctionalComponent<{}> = () => {
 			{paths.map((p, index) => (
 				<>
 					<Link
-						to={paths.slice(0, index).join("/")}
+						to={"/" + paths.slice(0, index + 1).join("/")}
 						className="text-sm text-primary hover:underline">
 						{titleCase(p)}
 					</Link>
