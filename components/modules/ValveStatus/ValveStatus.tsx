@@ -21,8 +21,8 @@ interface ValveType {
 export const ValveCollection: FunctionalComponent<{ valves: ValveType[] }> = ({ valves }) => {
 	const valveCx = (status: boolean) =>
 		cx("px-4 py-2 flex items-center justify-center text-primary font-bold hover:bg-teal-100", {
-			"bg-white": status,
-			"": !status,
+			"bg-teal-500 animate-pulse": status,
+			"bg-white text-secondary": !status,
 		});
 
 	return (
@@ -37,7 +37,9 @@ export const ValveCollection: FunctionalComponent<{ valves: ValveType[] }> = ({ 
 };
 
 export const ValveStatus: FunctionalComponent<{}> = () => {
-	const [valves, _] = useState(Array.from({ length: 24 }, (_, id) => ({ id: id, status: true })));
+	const [valves, _] = useState(
+		Array.from({ length: 24 }, (_, id) => ({ id: id, status: id === 2 }))
+	);
 	const [top, bottom] = partition(valves, ({ id }) => id < 12);
 	return (
 		<Card title="Valve Status">

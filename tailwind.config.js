@@ -14,6 +14,8 @@ module.exports = {
 				gray: colors.blueGray,
 				trueGray: colors.trueGray,
 				teal: colors.teal,
+				"teal-accent": colors.teal["500"],
+				"purple-accent": colors.purple["500"],
 			},
 			textColor: {
 				primary: colors.trueGray["900"],

@@ -8,6 +8,7 @@ import { Breadcrumb } from "components/modules/Breadcrumb";
 // import { Toolbar } from "components/modules/Toolbar";
 
 import { Tasks } from "pages/Tasks";
+import { TaskConfig } from "pages/TaskConfig";
 const Div: FunctionalComponent<JSX.HTMLAttributes<HTMLDivElement>> = (props) => (
 	<div {...props}>{props.children}</div>
 );
@@ -33,6 +34,7 @@ const Application = (
 					<Route exact path="/404" render={() => <div>404 Error</div>} />
 
 					<Route path="/monitoring" render={() => <Monitoring />} />
+					<Route path="/tasks/:taskname" render={() => <TaskConfig />} />
 					<Route path="/tasks" render={() => <Tasks />} />
 					<Route path="*" render={() => <Redirect to="/404" />} />
 				</Switch>
