@@ -1,3 +1,4 @@
+// import tw, { GlobalStyles } from "twin.macro";
 import "styles/global.css";
 import { h, render, FunctionalComponent, JSX } from "preact";
 import { HashRouter as Router, Route, Link, NavLink, Redirect, Switch } from "react-router-dom";
@@ -9,6 +10,7 @@ import { Breadcrumb } from "components/modules/Breadcrumb";
 
 import { Tasks } from "pages/Tasks";
 import { TaskConfig } from "pages/TaskConfig";
+
 const Div: FunctionalComponent<JSX.HTMLAttributes<HTMLDivElement>> = props => (
     <div {...props}>{props.children}</div>
 );
@@ -18,6 +20,7 @@ const Toolbar = Div;
 
 const Application = (
     <Router>
+        {/* <GlobalStyles /> */}
         <div className="flex h-full overflow-hidden bg-white">
             <Sidebar />
 
@@ -39,14 +42,10 @@ const Application = (
                     <Route path="*" render={() => <Redirect to="/404" />} />
                 </Switch>
             </LeftPane>
-
-            {/* 
-			<Badge
-				className="absolute px-4 py-2 text-sm bg-gray-100 border rounded-full right-8 bottom-4 text-primary"
-				text="Sun Nov 22, 2020 13:27 GMT +7"
-			/> */}
         </div>
     </Router>
 );
 
-render(Application, document.getElementById("root"));
+if (typeof window !== "undefined") {
+    render(Application, document.getElementById("root"));
+}

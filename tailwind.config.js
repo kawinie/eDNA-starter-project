@@ -1,18 +1,9 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-    purge: {
-        content: ["./**/*.tsx", "./**/*.html"],
-    },
     theme: {
         extend: {
-            colors: {
-                gray: colors.blueGray,
-                trueGray: colors.trueGray,
-                teal: colors.teal,
-                "teal-accent": colors.teal["500"],
-                "purple-accent": colors.purple["500"],
-            },
+            colors: colors,
             textColor: {
                 primary: colors.trueGray["900"],
                 secondary: colors.trueGray["500"],
@@ -25,6 +16,25 @@ module.exports = {
             },
             letterSpacing: {
                 logo: "1rem",
+            },
+            fontFamiliy: {
+                sans: [
+                    "ui-sans-serif",
+                    "system-ui",
+                    "-apple-system",
+                    "BlinkMacSystemFont",
+                    "Segoe UI",
+                    "Roboto",
+                    "Helvetica Neue",
+                    "Arial",
+                    "Noto Sans",
+                    "sans-serif",
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji",
+                    "Segoe UI Symbol",
+                    "Noto Color Emoji",
+                ],
+                logo: ["Verdana"],
             },
         },
         screens: {

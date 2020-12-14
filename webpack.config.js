@@ -27,7 +27,7 @@ module.exports = (_env, argv) => {
         entry: "./app/app",
         devServer: {
             contentBase: path.resolve(__dirname, "_dist"),
-            // compress: true,
+            compress: true,
             historyApiFallback: true,
             hot: true,
         },
