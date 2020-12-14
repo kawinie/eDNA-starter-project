@@ -1,4 +1,4 @@
-import { h, FunctionalComponent, Fragment } from "preact";
+import { FunctionalComponent } from "preact";
 import { Link, useLocation } from "react-router-dom";
 
 function titleCase(str: string) {
