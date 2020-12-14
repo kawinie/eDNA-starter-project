@@ -1,6 +1,8 @@
 import { FunctionalComponent } from "preact";
 import { Link, useLocation } from "react-router-dom";
 
+import tw from "twin.macro";
+
 function titleCase(str: string) {
     return str
         .toLowerCase()
@@ -10,7 +12,7 @@ function titleCase(str: string) {
         .join(" ");
 }
 
-const Seperator: FunctionalComponent = () => (
+const Seperator = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path
             d="M15.713 12L9.70202 5.99001L8.28802 7.40401L12.888 12.004L8.28802 16.597L9.70202 18.011L15.713 12Z"
@@ -19,12 +21,14 @@ const Seperator: FunctionalComponent = () => (
     </svg>
 );
 
+const GridContainer = tw.div`grid items-center flex-shrink-0 w-full h-20 grid-flow-col gap-4 px-8 auto-cols-max`;
+
 export const Breadcrumb: FunctionalComponent = () => {
     const location = useLocation();
     const paths = location.pathname.split("/").slice(1);
     return (
-        <div className="grid items-center flex-shrink-0 w-full h-20 grid-flow-col gap-4 px-8 auto-cols-max">
-            <div className="flex items-center text-sm text-primary">
+        <GridContainer>
+            <div tw="flex items-center text-sm text-primary">
                 <svg
                     width="24"
                     height="24"
@@ -36,19 +40,19 @@ export const Breadcrumb: FunctionalComponent = () => {
                         fill="#2E3A59"
                     />
                 </svg>
-                <div className="ml-1">EDNA Dashboard</div>
+                <div tw="ml-1">EDNA Dashboard</div>
             </div>
             <Seperator />
             {paths.map((p, index) => (
                 <>
                     <Link
                         to={"/" + paths.slice(0, index + 1).join("/")}
-                        className="text-sm text-primary hover:underline">
+                        tw="text-sm text-primary hover:underline">
                         {titleCase(p)}
                     </Link>
                     {index < paths.length - 1 && <Seperator />}
                 </>
             ))}
-        </div>
+        </GridContainer>
     );
 };
