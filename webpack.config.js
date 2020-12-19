@@ -24,7 +24,7 @@ module.exports = (_env, argv) => {
 
     return {
         context: __dirname,
-        entry: "./app/app",
+        entry: "./app/index",
         devServer: {
             contentBase: path.resolve(__dirname, "_dist"),
             compress: true,
@@ -34,31 +34,12 @@ module.exports = (_env, argv) => {
         module: {
             rules: [
                 {
-                    // Run TS code through TS Compiler first to use all lastest TS features then use Babel to polyfill ES5
-                    test: /\.tsx?$/,
-                    use: [
-                        { loader: "babel-loader" },
-                        // { loader: "ts-loader", options: { transpileOnly: true } },
-                    ],
+                    test: /\.(ts|tsx)?$/,
+                    use: [{ loader: "babel-loader" }],
+                    // We exclude node_modules here assuming that all libraries already pre-compiled
                     exclude: /node_modules/,
                 },
                 {
-                    // Normal CSS Files
-                    test: /\.css$/i,
-                    use: [
-                        { loader: isProduction ? MiniCssExtractPlugin.loader : "style-loader" },
-                        {
-                            loader: "css-loader",
-                            options: {
-                                importLoaders: 1,
-                            },
-                        },
-                        { loader: "postcss-loader" },
-                    ],
-                    exclude: [/node_modules/, /\.module\.css$/],
-                },
-                {
-                    // CSS Module Files
                     test: /\.css$/i,
                     use: [
                         { loader: isProduction ? MiniCssExtractPlugin.loader : "style-loader" },
@@ -71,8 +52,6 @@ module.exports = (_env, argv) => {
                         },
                         { loader: "postcss-loader" },
                     ],
-                    exclude: [/node_modules/],
-                    include: [/\.module\.css$/],
                 },
             ],
         },
@@ -121,7 +100,11 @@ module.exports = (_env, argv) => {
                 pages: path.resolve(__dirname, "pages"),
                 styles: path.resolve(__dirname, "styles"),
             },
+            fallback: {
+                assert: "assert",
+            },
         },
+        // target: "node",
         output: {
             filename: "bundle.js",
             path: path.resolve(__dirname, "_dist"),

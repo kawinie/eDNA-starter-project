@@ -48,11 +48,11 @@ export const Sidebar: FunctionalComponent = () => {
             className="grid flex-shrink-0 h-screen overflow-y-scroll"
             style="grid-template-rows: 64px 64px; grid-auto-rows: 100px;">
             <div className="hidden grid-flow-col gap-4 text-xl lg:grid place-content-center tracking-logo logo">
-                <span className="px-2 tracking-normal text-white rounded-md bg-teal-accent">E</span>
+                <span className="px-2 tracking-normal text-white rounded-md bg-accent">E</span>
                 <span className="">DNA</span>
             </div>
 
-            <div className="self-center px-4 py-2 text-2xl text-white bg-teal-accent rounded-xl justify-self-center logo lg:hidden">
+            <div className="self-center px-4 py-2 text-2xl text-white bg-accent rounded-xl justify-self-center logo lg:hidden">
                 E
             </div>
             <div />

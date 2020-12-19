@@ -1,22 +1,29 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "noImplicitAny": true,
-        "module": "ES2020",
-        "target": "ES2020",
+        "declaration": true,
+        "emitDeclarationOnly": true,
         "allowJs": true,
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
-        "jsx": "react",
-        "skipLibCheck": true,
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
         "jsxFactory": "h",
         "jsxFragmentFactory": "Fragment",
+        "lib": ["es2020", "dom", "dom.iterable"],
+        "module": "es6",
         "moduleResolution": "node",
-        "baseUrl": ".",
+        "noImplicitAny": true,
+        "outDir": "./dist/",
         "paths": {
             "components/*": ["./components/*"],
             "pages/*": ["./pages/*"],
             "styles/*": ["./styles/*"]
-        }
+        },
+        "skipLibCheck": true,
+        // "strict": true,
+        "target": "ES2020"
     },
-    "exclude": ["node_modules", "node_modules.nosync", "dist", "public", "build", "out"]
+    "exclude": ["node_modules", "node_modules.nosync", "dist", "public", "build", "out"],
+    "include": ["**/*.ts", "**/*.tsx"]
 }

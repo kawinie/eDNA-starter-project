@@ -1,34 +1,25 @@
-// import tw, { GlobalStyles } from "twin.macro";
-import "styles/global.css";
-import { h, render, FunctionalComponent, JSX } from "preact";
-import { HashRouter as Router, Route, Link, NavLink, Redirect, Switch } from "react-router-dom";
-import { Monitoring } from "pages/Monitoring";
-import { Badge } from "components/units/Badge";
-import { Sidebar } from "components/modules/Sidebar";
-import { Breadcrumb } from "components/modules/Breadcrumb";
-// import { Toolbar } from "components/modules/Toolbar";
+import tw from "twin.macro";
+import { HashRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 
+import { Monitoring } from "pages/Monitoring";
 import { Tasks } from "pages/Tasks";
 import { TaskConfig } from "pages/TaskConfig";
 
-const Div: FunctionalComponent<JSX.HTMLAttributes<HTMLDivElement>> = props => (
-    <div {...props}>{props.children}</div>
-);
+import { Sidebar } from "components/modules/Sidebar";
+import { Breadcrumb } from "components/modules/Breadcrumb";
 
-const LeftPane = Div;
-const Toolbar = Div;
+const LeftPane = tw.div`flex flex-col w-full h-screen overflow-y-scroll bg-background
+`;
+const Toolbar = tw.div`sticky top-0 z-40 grid items-center flex-shrink-0 w-full h-8`;
 
-const Application = (
+export const Application = () => (
     <Router>
-        {/* <GlobalStyles /> */}
-        <div className="flex h-full overflow-hidden bg-white">
+        <div tw="flex h-full overflow-hidden bg-white">
             <Sidebar />
 
-            <LeftPane
-                className="flex flex-col w-full h-screen overflow-y-scroll bg-background"
-                style="border-top-left-radius: 3rem; border-bottom-left-radius: 3rem">
-                <Toolbar className="sticky top-0 z-40 grid items-center flex-shrink-0 w-full h-8">
-                    <div className="px-4 text-sm justify-self-end text-primary">{`V${__APPVERSION__}`}</div>
+            <LeftPane>
+                <Toolbar>
+                    <div tw="px-4 text-sm justify-self-end text-primary">{`V${__APPVERSION__}`}</div>
                 </Toolbar>
                 <Breadcrumb />
 
@@ -45,7 +36,3 @@ const Application = (
         </div>
     </Router>
 );
-
-if (typeof window !== "undefined") {
-    render(Application, document.getElementById("root"));
-}

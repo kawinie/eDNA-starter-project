@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+colors.accent = colors.teal[500];
 
 module.exports = {
     theme: {
