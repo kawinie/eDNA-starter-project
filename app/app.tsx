@@ -8,16 +8,15 @@ import { TaskConfig } from "pages/TaskConfig";
 import { Sidebar } from "components/modules/Sidebar";
 import { Breadcrumb } from "components/modules/Breadcrumb";
 
-const LeftPane = tw.div`flex flex-col w-full h-screen overflow-y-scroll bg-background
-`;
+const PageContainer = tw.div`flex flex-col w-full h-screen overflow-y-scroll bg-background`;
 const Toolbar = tw.div`sticky top-0 z-40 grid items-center flex-shrink-0 w-full h-8`;
 
 export const Application = () => (
     <Router>
-        <div tw="flex h-full overflow-hidden bg-white">
+        <div tw="flex h-full overflow-hidden bg-white debug-screens">
             <Sidebar />
 
-            <LeftPane>
+            <PageContainer>
                 <Toolbar>
                     <div tw="px-4 text-sm justify-self-end text-primary">{`V${__APPVERSION__}`}</div>
                 </Toolbar>
@@ -32,7 +31,7 @@ export const Application = () => (
                     <Route path="/tasks" render={() => <Tasks />} />
                     <Route path="*" render={() => <Redirect to="/404" />} />
                 </Switch>
-            </LeftPane>
+            </PageContainer>
         </div>
     </Router>
 );

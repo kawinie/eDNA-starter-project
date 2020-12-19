@@ -1,10 +1,9 @@
-import { h, FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { useState } from "preact/hooks";
 import { Card } from "components/modules/Card";
 
-import styles from "./ValveStatus.module.css";
-
-import cx from "classnames";
+import tw from "twin.macro";
+import styled from "styled-components";
 
 export const partition = <T extends any>(ary: T[], predicate: (elem: T) => boolean) => {
     const a: T[] = [];
@@ -18,19 +17,18 @@ interface ValveType {
     status: boolean;
 }
 
-export const ValveCollection: FunctionalComponent<{ valves: ValveType[] }> = ({ valves }) => {
-    const valveCx = (status: boolean) =>
-        cx("px-4 py-2 flex items-center justify-center text-primary font-bold hover:bg-teal-100", {
-            "bg-teal-500 animate-pulse": status,
-            "bg-white text-secondary": !status,
-        });
+const Valve = styled.div<{ isActive: boolean }>`
+    ${tw`flex items-center justify-center px-4 py-2 font-bold text-primary hover:bg-teal-100`}
+    ${props => (props.isActive ? tw`bg-teal-500 animate-pulse` : tw`bg-white text-secondary`)}
+`;
 
+export const ValveCollection: FunctionalComponent<{ valves: ValveType[] }> = ({ valves }) => {
     return (
-        <div className="grid h-24 grid-flow-row grid-cols-12 grid-rows-2 overflow-hidden shadow rounded-xl">
+        <div tw="grid h-24 grid-flow-row grid-cols-12 grid-rows-2 overflow-hidden shadow rounded-xl">
             {valves.map(v => (
-                <div key={v.id} className={valveCx(v.status)}>
+                <Valve key={v.id} isActive={v.status}>
                     {v.id}
-                </div>
+                </Valve>
             ))}
         </div>
     );
@@ -44,25 +42,25 @@ export const ValveStatus: FunctionalComponent<{}> = () => {
     return (
         <Card title="Valve Status">
             <ValveCollection valves={top.concat(bottom.reverse())} />
-            <div className="grid grid-flow-col gap-8 auto-cols-max">
-                <div className="flex items-center mt-8">
-                    <div className="w-4 h-4 mr-2 bg-teal-400 rounded-md"></div>
-                    <div className="text-sm text-secondary">Current Valve</div>
+            <div tw="grid grid-flow-col gap-8 auto-cols-max">
+                <div tw="flex items-center mt-8">
+                    <div tw="w-4 h-4 mr-2 bg-teal-400 rounded-md"></div>
+                    <div tw="text-sm text-secondary">Current Valve</div>
                 </div>
 
-                <div className="flex items-center mt-8">
-                    <div className="w-4 h-4 mr-2 bg-yellow-400 rounded-md"></div>
-                    <div className="text-sm text-secondary">Next</div>
+                <div tw="flex items-center mt-8">
+                    <div tw="w-4 h-4 mr-2 bg-yellow-400 rounded-md"></div>
+                    <div tw="text-sm text-secondary">Next</div>
                 </div>
 
-                <div className="flex items-center mt-8">
-                    <div className="w-4 h-4 mr-2 rounded-md bg-trueGray-900"></div>
-                    <div className="text-sm text-secondary">Scheduled</div>
+                <div tw="flex items-center mt-8">
+                    <div tw="w-4 h-4 mr-2 rounded-md bg-trueGray-900"></div>
+                    <div tw="text-sm text-secondary">Scheduled</div>
                 </div>
 
-                <div className="flex items-center mt-8">
-                    <div className="w-4 h-4 mr-2 rounded-md bg-trueGray-300"></div>
-                    <div className="text-sm text-secondary">Disabled</div>
+                <div tw="flex items-center mt-8">
+                    <div tw="w-4 h-4 mr-2 rounded-md bg-trueGray-300"></div>
+                    <div tw="text-sm text-secondary">Disabled</div>
                 </div>
             </div>
         </Card>

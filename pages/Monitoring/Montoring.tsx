@@ -1,14 +1,16 @@
-import { h, FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { Tile } from "components/units/Tile";
 import { TileCollection } from "components/modules/TileCollection";
 import { ValveStatus } from "components/modules/ValveStatus";
 import { StateTable } from "components/modules/StateTable";
 
+import "twin.macro";
+
 export const Monitoring: FunctionalComponent = () => {
     return (
         <div
-            className="grid self-center w-full max-w-screen-xl gap-4"
-            style="grid-template-columns: 1fr min-content;">
+            tw="grid self-center w-full max-w-screen-xl gap-4 mx-auto"
+            css={"grid-template-columns: 1fr min-content;"}>
             <main>
                 <ValveStatus />
                 <StateTable />

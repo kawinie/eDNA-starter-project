@@ -99,6 +99,7 @@ module.exports = (_env, argv) => {
                 components: path.resolve(__dirname, "components"),
                 pages: path.resolve(__dirname, "pages"),
                 styles: path.resolve(__dirname, "styles"),
+                hooks: path.resolve(__dirname, "hooks"),
             },
             fallback: {
                 assert: "assert",

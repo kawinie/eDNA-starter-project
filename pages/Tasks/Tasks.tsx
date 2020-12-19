@@ -1,30 +1,32 @@
-import { h, FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { Card } from "components/modules/Card";
-import { Link } from "react-router-dom";
-import cx from "classnames";
+import { Link, LinkProps } from "react-router-dom";
+
+import tw, { css, styled } from "twin.macro";
 type TaskType = {
     name?: string;
     active?: boolean;
 };
 
+const StyledLink = styled(Link)<{ isActive: boolean }>`
+    ${tw`relative flex flex-col w-64 p-8 mr-4 transition transform bg-white shadow cursor-pointer hover:-translate-y-2 rounded-xl text-primary`}
+    ${props => !props.isActive && tw`bg-trueGray-200 text-secondary`}
+`;
+
 const TaskTile: FunctionalComponent<TaskType> = ({ name = "Untitled", active = false }) => {
-    const cs = cx(
-        "relative flex flex-col w-64 p-8 mr-4 transition transform bg-white shadow cursor-pointer hover:-translate-y-2 rounded-xl text-primary",
-        { "bg-trueGray-200 text-secondary disabled": !active }
-    );
     return (
-        <Link className={cs} to={`/tasks/${name}`}>
+        <StyledLink to={`/tasks/${name}`} isActive={active}>
             {active && (
-                <span class="flex h-3 w-3 -right-1.5 absolute -top-1.5">
-                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-purple-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+                <span tw="flex h-3 w-3 -right-1.5 absolute -top-1.5">
+                    <span tw="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-purple-400 opacity-75"></span>
+                    <span tw="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
                 </span>
             )}
-            <div className="mr-1 text-sm font-bold leading-none">{name}</div>
-            <div className="mt-2 text-sm text-secondary">
+            <div tw="mr-1 text-sm font-bold leading-none">{name}</div>
+            <div tw="mt-2 text-sm text-secondary">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, debitis.
             </div>
-        </Link>
+        </StyledLink>
     );
 };
 
@@ -34,7 +36,7 @@ const TaskSection: FunctionalComponent<{ title?: string; tasks?: TaskType[] }> =
 }) => {
     return (
         <Card title={title}>
-            <div className="flex flex-wrap">
+            <div tw="flex flex-wrap">
                 {tasks.map(t => (
                     <TaskTile name={t.name} active={t.active} />
                 ))}
@@ -50,7 +52,7 @@ export const Tasks: FunctionalComponent = () => {
     ];
     const inactiveTasks = [{ name: "Task 3" }, { name: "Task 4" }];
     return (
-        <div className="w-full max-w-screen-xl mx-auto">
+        <div tw="w-full max-w-screen-xl mx-auto">
             <TaskSection title="Active Task" tasks={activeTasks} />
             <TaskSection title="Inactive Task" tasks={inactiveTasks} />
         </div>

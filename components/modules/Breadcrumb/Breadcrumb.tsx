@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "preact";
+import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import tw from "twin.macro";
@@ -23,7 +23,7 @@ const Seperator = () => (
 
 const GridContainer = tw.div`grid items-center flex-shrink-0 w-full h-20 grid-flow-col gap-4 px-8 auto-cols-max`;
 
-export const Breadcrumb: FunctionalComponent = () => {
+export const Breadcrumb: FC = () => {
     const location = useLocation();
     const paths = location.pathname.split("/").slice(1);
     return (

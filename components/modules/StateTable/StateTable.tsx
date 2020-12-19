@@ -1,8 +1,33 @@
-import { h, FunctionalComponent, JSX } from "preact";
+import { FC } from "react";
+import tw, { styled } from "twin.macro";
+
 import { Card } from "components/modules/Card";
 import { Badge } from "components/units/Badge";
 
-import cx from "classnames";
+type THeaderCellProps = {
+    text?: string;
+    className?: string;
+};
+
+const HeaderCell = ({ text, className }: THeaderCellProps) => (
+    <th scope="col" tw="py-4 font-normal text-sm text-left text-secondary" className={className}>
+        {text}
+    </th>
+);
+
+const StateTableHeader = () => {
+    return (
+        <thead>
+            <tr>
+                <HeaderCell tw="text-xl font-bold text-primary" text="State Information" />
+                <HeaderCell tw="text-sm text-center text-secondary" text="Status" />
+                <HeaderCell tw="text-sm text-right text-secondary" text="Time Elaped" />
+            </tr>
+        </thead>
+    );
+};
+
+const TableCell = tw.td`px-4 py-4 text-sm font-bold bg-white text-primary whitespace-nowrap`;
 
 interface StateType {
     status: string;
@@ -10,55 +35,28 @@ interface StateType {
     timeElapsed: number;
 }
 
-// const staticData: StateType[] = [{ name: "Idle", status: "Inactive", timeElapsed:  0}];
-const HeaderCell: FunctionalComponent<{ className?: string }> = ({ children, ...props }) => (
-    <th scope="col" className={`py-4 font-normal text-sm text-left text-secondary`} {...props}>
-        {children}
-    </th>
-);
-
-const StateTableHeader: FunctionalComponent = () => {
+const StateTableRow: FC<StateType> = ({ status, name, timeElapsed }) => {
+    const inactive = status.toLowerCase() === "inactive";
     return (
-        <thead>
-            <tr>
-                <HeaderCell className="text-xl text-left text-primary">
-                    State Information
-                </HeaderCell>
-                <HeaderCell className="text-sm text-center text-secondary">Status</HeaderCell>
-                <HeaderCell className="text-sm text-right text-secondary">Time Elasped</HeaderCell>
-            </tr>
-        </thead>
-    );
-};
-
-const TableCell: FunctionalComponent<{ className?: string }> = ({ className, children }) => (
-    <td
-        className={`px-4 py-4 text-sm font-bold bg-white text-primary whitespace-nowrap ${className}`}>
-        {children}
-    </td>
-);
-
-const StateTableRow: FunctionalComponent<StateType> = ({ status, name, timeElapsed }) => {
-    const cs = status.toLocaleLowerCase() === "inactive";
-    const badgeStyle = cx("py-2 px-4 text-xs font-bold rounded-full", {
-        "bg-gray-100 text-primary": cs,
-        "bg-teal-100 text-teal-800": !cs,
-    });
-
-    return (
-        <tr className="shadow">
-            <TableCell className="rounded-l-md">{name}</TableCell>
+        <tr tw="shadow">
+            <TableCell tw="rounded-l-md">{name}</TableCell>
             <TableCell>
-                <div className="flex justify-center">
-                    <Badge className={badgeStyle} text={status} />
+                <div tw="flex justify-center">
+                    <Badge
+                        tw="px-4 py-2 text-xs font-bold rounded-full"
+                        css={
+                            inactive ? tw`bg-gray-100 text-primary` : tw`text-teal-800 bg-teal-100`
+                        }
+                        text={status}
+                    />
                 </div>
             </TableCell>
-            <TableCell className="pr-4 text-right rounded-r-md">{`${timeElapsed} seconds ago`}</TableCell>
+            <TableCell tw="pr-4 text-right rounded-r-md">{`${timeElapsed} seconds ago`}</TableCell>
         </tr>
     );
 };
 
-export const StateTable: FunctionalComponent = () => {
+const StateTableBody = () => {
     const stateNames = ["Idle", "Flushing", "Sampling", "Decontamination", "Stop"];
     const states: StateType[] = Array.from({ length: 5 }, (_, id) => ({
         name: stateNames[id],
@@ -67,22 +65,28 @@ export const StateTable: FunctionalComponent = () => {
     }));
 
     return (
+        <tbody>
+            {states.map(s => (
+                <StateTableRow {...s} />
+            ))}
+        </tbody>
+    );
+};
+
+export const StateTable = () => {
+    return (
         <Card>
             <table
-                className="min-w-full border-separate"
-                style="border-spacing: 0 0.5rem; margin-top: -0.5rem">
+                tw="min-w-full border-separate"
+                css={"border-spacing: 0 0.5rem; margin-top: -0.5rem"}>
                 <colgroup>
-                    <col span={1} style="width: 60%;" />
-                    <col span={1} style="width: 15%;" />
-                    <col span={1} style="width: 25%;" />
+                    <col span={1} css="width: 60%;" />
+                    <col span={1} css="width: 15%;" />
+                    <col span={1} css="width: 25%;" />
                 </colgroup>
 
                 <StateTableHeader />
-                <tbody>
-                    {states.map(s => (
-                        <StateTableRow {...s} />
-                    ))}
-                </tbody>
+                <StateTableBody />
             </table>
         </Card>
     );

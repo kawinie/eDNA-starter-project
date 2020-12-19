@@ -8,7 +8,7 @@
         "build": "webpack --mode=production",
         "watch": "webpack --mode=development --watch",
         "dev": "webpack --mode=development",
-        "start": "webpack serve --open=firefox --mode=development"
+        "start": "webpack serve --mode=development"
     },
     "keywords": [],
     "author": "Kawin Pechetratanapanit",

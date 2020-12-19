@@ -1,58 +1,49 @@
-import { h, FunctionalComponent } from "preact";
+import { FC } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-import cx from "classnames";
+import tw from "twin.macro";
 
 interface SVGButtonProps {
     width?: number;
     height?: number;
     text?: string;
     to: string;
-    className?: string;
-    svgClassName?: string;
 }
 
-const SVGNavLink: FunctionalComponent<SVGButtonProps> = ({
-    width = 24,
-    height = 24,
-    text,
-    to,
-    svgClassName,
-    children,
-}) => {
+const SVGNavLink: FC<SVGButtonProps> = ({ width = 24, height = 24, text, to, children }) => {
     const location = useLocation();
-    const navlinkClassName = cx("flex px-8 lg:px-12 text-sm items-center hover:bg-background", {
-        "bg-background": location.pathname.startsWith(to),
-    });
 
     return (
-        <NavLink className={navlinkClassName} to={to}>
-            <div className="flex items-center">
+        <NavLink
+            tw="flex items-center px-8 text-sm lg:px-12 hover:bg-background"
+            css={location.pathname.startsWith(to) && tw`bg-background`}
+            to={to}>
+            <div tw="flex items-center">
                 <svg
-                    className={`fill-current text-primary lg:mr-4 ${svgClassName}`}
+                    tw="fill-current text-primary lg:mr-4"
                     width={width}
                     height={height}
                     viewBox={`0 0 ${width} ${height}`}
                     xmlns="http://www.w3.org/2000/svg">
                     {children}
                 </svg>
-                <div className="hidden lg:block">{text}</div>
+                <div tw="hidden lg:block">{text}</div>
             </div>
         </NavLink>
     );
 };
 
-export const Sidebar: FunctionalComponent = () => {
+export const Sidebar = () => {
     return (
         <div
-            className="grid flex-shrink-0 h-screen overflow-y-scroll"
-            style="grid-template-rows: 64px 64px; grid-auto-rows: 100px;">
-            <div className="hidden grid-flow-col gap-4 text-xl lg:grid place-content-center tracking-logo logo">
-                <span className="px-2 tracking-normal text-white rounded-md bg-accent">E</span>
-                <span className="">DNA</span>
+            tw="grid flex-shrink-0 h-screen overflow-y-scroll"
+            css={"grid-template-rows: 64px 64px; grid-auto-rows: 100px;"}>
+            <div tw="hidden grid-flow-col gap-4 text-xl lg:grid place-content-center tracking-logo">
+                <span tw="px-2 tracking-normal text-white rounded-md bg-accent">E</span>
+                <span tw="">DNA</span>
             </div>
 
-            <div className="self-center px-4 py-2 text-2xl text-white bg-accent rounded-xl justify-self-center logo lg:hidden">
+            <div tw="self-center px-4 py-2 text-2xl text-white bg-accent rounded-xl justify-self-center lg:hidden">
                 E
             </div>
             <div />

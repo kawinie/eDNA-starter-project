@@ -1,17 +1,14 @@
-import { ComponentChildren, FunctionalComponent, h, JSX, ComponentChild } from "preact";
+import { forwardRef } from "react";
 
 interface Props {
     text?: string;
+    className?: string;
 }
 
-export const Badge: FunctionalComponent<JSX.HTMLAttributes<HTMLDivElement> & Props> = ({
-    className,
-    text,
-    ...props
-}) => {
+export const Badge = forwardRef<HTMLDivElement, Props>((props, ref) => {
     return (
-        <div className={"flex justify-center round-full " + className} {...props}>
-            {text}
+        <div tw="flex justify-center round-full" className={props.className} ref={ref}>
+            {props.text}
         </div>
     );
-};
+});

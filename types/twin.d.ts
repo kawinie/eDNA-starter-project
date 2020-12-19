@@ -8,12 +8,15 @@ declare module "twin.macro" {
 }
 
 declare module "react" {
+    interface Attributes {
+        css?: CSSProp | CSSObject;
+    }
     // The css prop
     interface HTMLAttributes<T> extends DOMAttributes<T> {
         css?: CSSProp;
     }
     // The inline svg css prop
-    interface SVGProps<T> extends SVGProps<SVGSVGElement> {
+    interface SVGProps<T> extends SVGProps<T> {
         css?: CSSProp;
     }
 }
